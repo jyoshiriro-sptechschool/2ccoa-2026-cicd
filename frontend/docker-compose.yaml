@@ -1,0 +1,10 @@
+services:
+  nginx:
+    image: nginx:stable
+    container_name: servidor-http
+    ports:
+      - "80:80"
+    volumes:
+      - /home/ubuntu/frontend/dist:/usr/share/nginx/html:ro
+      - /home/ubuntu/frontend/nginx.conf:/etc/nginx/nginx.conf:ro
+    restart: unless-stopped
