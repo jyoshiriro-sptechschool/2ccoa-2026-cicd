@@ -19,7 +19,7 @@ jobs:
 
       - name: Instalar Dependências
         working-directory: ./frontend
-        run: npm ci
+        run: npm i --verbose
 
       - name: Executar Build
         working-directory: ./frontend
