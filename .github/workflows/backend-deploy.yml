@@ -1,0 +1,46 @@
+name: Java Tests
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Set up JDK 21
+      uses: actions/setup-java@v4
+      with:
+        java-version: '21'
+        distribution: 'temurin'
+        cache: maven
+    - name: Gerando .jar
+      run: mvn package -DskipTests --file backend/pom.xml
+
+    - name: Configurando as Credenciais da AWS
+      uses: aws-actions/configure-aws-credentials@v4
+      with:
+        aws-access-key-id: ${{ secrets.ACCESS_KEY }}
+        aws-secret-access-key: ${{ secrets.SECRET_ACCESS_KEY }}
+        aws-region: us-east-1
+
+    - name: Login no Amazon ECR
+      id: login-ecr
+      uses: aws-actions/amazon-ecr-login@v2        
+      
+    - name: Build, e Push da Imagem para o ECR
+      env:
+        REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+        REPOSITORY: ecr-api
+        IMAGE_TAG: latest
+      run: |
+        # O argumento '-f backend/Dockerfile' indica onde está o arquivo
+        # O '.' no final (após o backend/) indica que o contexto de build é a pasta backend
+        docker build -t $REGISTRY/$REPOSITORY:latest -f backend/Dockerfile backend/
+        
+        # Envia as imagens para o ECR
+        docker push $REGISTRY/$REPOSITORY:latest
