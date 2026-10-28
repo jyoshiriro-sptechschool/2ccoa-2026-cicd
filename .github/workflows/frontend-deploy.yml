@@ -17,6 +17,7 @@ jobs:
         with:
           node-version: '20' # Ajuste para a versão do Node que você utiliza (ex: 18 ou 20)
           cache: 'npm'       # Faz o cache automático das dependências do npm para acelerar o build
+          cache-dependency-path: frontend/package-lock.json # Aponta para o lockfile dentro da pasta frontend
 
       - name: Instalar Dependências
         working-directory: ./frontend
