@@ -43,9 +43,9 @@ jobs:
           REPOSITORY: ecr-ui
           IMAGE_TAG: latest
         run: |
-          # O argumento '-f backend/Dockerfile' indica onde está o arquivo
-          # O '.' no final (após o backend/) indica que o contexto de build é a pasta backend
-          docker build -t $REGISTRY/$REPOSITORY:latest -f backend/Dockerfile backend/
+          # O argumento '-f frontend/Dockerfile' indica onde está o arquivo
+          # O '.' no final (após o backend/) indica que o contexto de build é a pasta frontend
+          docker build -t $REGISTRY/$REPOSITORY:latest -f frontend/Dockerfile frontend/
           
           # Envia as imagens para o ECR
           docker push $REGISTRY/$REPOSITORY:latest
