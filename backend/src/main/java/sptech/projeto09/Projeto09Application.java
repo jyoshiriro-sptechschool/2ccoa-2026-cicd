@@ -3,7 +3,7 @@ package sptech.projeto09;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-@SpringBootApplications
+@SpringBootApplication
 public class Projeto09Application {
 
 	public static void main(String[] args) {
