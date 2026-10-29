@@ -45,7 +45,7 @@ function PetsList() {
 
   return (
     <div className="pets-container">
-      <h1>Pets Quisitos</h1>
+      <h1>Pets Quisitos v2</h1>
       
       <div className="search-box">
         <input
