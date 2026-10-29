@@ -101,7 +101,7 @@ function PetsList() {
             
             <div className="pet-info">
               <div className="info-section">
-                <h3>Informações do Pet</h3>
+                <h3>Informações do Petzinho</h3>
                 <p><strong>ID:</strong> {pet.id}</p>
                 <p><strong>Nome:</strong> {pet.nomePet}</p>
                 <p><strong>Espécie:</strong> {pet.especie.nome} ({pet.especie.codigo})</p>
